@@ -7,7 +7,20 @@
              
 
         <p>
-            <b>Modul 5</b> <br><br>
+            <b>Modul 6</b> <br><br>
+
+            <a href = "index6_1.mp4">Oppgave 1</a>                            <br>
+            <a href = "index6_2.pdf">Oppgave 2</a>                            <br>
+            <a href = "index6_3.php">Oppgave 3</a>                            <br>
+            <a href = "index6_4.mp4">Oppgave 4</a>                            <br>
+            <a href = "index6_5.php">Oppgave 5</a>                            <br>
+
+        </p>
+    <br>
+        <h4> Gamle moduler <br>
+        (Hyperlenker til disse vil ikke fungere dersom filene ikke er vedlagt)  </h4>
+
+        <p><b>Modul 5</b> <br><br>
 
             <a href = "index5_1.mp4">Oppgave 1 - Video  </a>                  <br>
             <a href = "index5_2.pdf">Oppgave 2 - PDF</a>                      <br>
@@ -15,14 +28,7 @@
             <a href = "index5_4.mp4">Oppgave 4 - Video  </a>                  <br>
             <a href = "index5_5.php">Oppgave 5</a>                            <br>
 
-        </p>
-    <br>
-        <h4> Gamle moduler <br>
-        (Hyperlenker til disse vil ikke fungere dersom filene ikke er vedlagt)  </h4>
-
-
-        <p>
-            <b>Modul 4</b> <br><br>
+        <p><b>Modul 4</b> <br><br>
 
             <a href = "index4_1.php">Oppgave 1</a>                            <br>
             <a href = "index4_2.php">Oppgave 2 - Kode   </a>                  <br>
