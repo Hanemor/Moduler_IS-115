@@ -1,38 +1,38 @@
 <?php
-$user = 'root';
-$password = '';
-$db = 'klubbdb';
+function dbConnect(){
 
-$db = new mysqli('localhost', $user, $password, $db) or die("Tilkobling misslykket");
+    $user = 'root';
+    $password = '';
+    $db = 'klubbdb';
 
-if ($db) {echo "Tilkoblet vellykket";}                      //Feedback
+    $db = new mysqli('localhost', $user, $password, $db) or die("Tilkobling misslykket");
 
+    if ($db) {echo "DB-tilkobling vellykket";}                   //Feedback
 
+    return $db;
+}
 
-$sqlM = "SELECT medlemmer.id, medlemmer.fornavn, medlemmer.etternavn, interesseregister.iid, interesser.navn
-FROM medlemmer
-INNER JOIN interesseregister on interesseregister.mid = medlemmer.id
-
-INNER JOIN interesser on interesseregister.iid = interesser.id
-ORDER BY medlemmer.id";                           //Definerer spørring
+$sqlM = "SELECT 
+    medlemmer.id, medlemmer.fornavn, medlemmer.etternavn, 
+    interesseregister.iid, interesser.navn
+    FROM medlemmer
+    INNER JOIN interesseregister on interesseregister.mid = medlemmer.id
+    INNER JOIN interesser on interesseregister.iid = interesser.id
+    ORDER BY medlemmer.id";                                     //Definerer spørring
 
 
 $sqlI = "SELECT interesser.navn
-FROM interesser
-";                       
+    FROM interesser";                       
 
+$db = dbConnect();
 
 $result = mysqli_query($db, $sqlM);                          //Henter med spørring
-
 $medlemmer = mysqli_fetch_all($result, MYSQLI_ASSOC);
-
 mysqli_free_result($result);  
 
 
 $result = mysqli_query($db, $sqlI); 
-
 $interesser = mysqli_fetch_all($result, MYSQLI_ASSOC);
-
 mysqli_free_result($result);                                //frigir minne
 
 
@@ -43,7 +43,7 @@ mysqli_close($db);                                          //Lukker DB-connecti
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Oppgave 1</title>
+        <title>Oppgave 5</title>
     </head>
 
     <body>

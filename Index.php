@@ -12,7 +12,7 @@
             <a href = "index6_1.php">Oppgave 1</a>                            <br>
             <a href = "index6_2.php">Oppgave 2</a>                            <br>
             <a href = "index6_3.php">Oppgave 3</a>                            <br>
-            <a href = "index6_4.mp4">Oppgave 4</a>                            <br>
+            <a href = "index6_4.php">Oppgave 4</a>                            <br>
             <a href = "index6_5.php">Oppgave 5</a>                            <br>
 
         </p>
