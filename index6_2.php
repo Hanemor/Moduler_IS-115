@@ -300,7 +300,7 @@ if (isset($_POST['contact-send'])){
         <p>               <!––"send" knapp -->
             <button type="submit" name="contact-send">Send</button>                       
         </p>
-</pre>
-</form>
+    </pre>
+    </form>
     </body> 
 </html>
