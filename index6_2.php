@@ -37,9 +37,6 @@ function feilmeldinger($a){
     }
     elseif((1000 > $a['postnummer']) || ( $a['postnummer'] > 9999 )){
         $messages[] = "Ugyldig postnummer";    
-        }
-    if (empty($a['poststed'])){   
-        $messages[] = "Du må fylle inn poststed";           
     }
     
     if (empty($a['tlf'])){   
@@ -179,8 +176,6 @@ if (isset($_POST['contact-send'])){
 
         insertMedlem($medlem, $con);
 
-
-
         
         $idQuery = "SELECT id FROM medlemmer WHERE 
             mail = '" . $medlem["mail"] . "' AND fornavn = '" . $medlem["fornavn"] . "';";
@@ -192,14 +187,16 @@ if (isset($_POST['contact-send'])){
         mysqli_free_result($result);   
 
         $id = $r[0]["id"];
-
-
         
         insertRolle(    $id, $medlem["roller"],      $con);
         insertInteresse($id, $medlem["interesser"],  $con);
         insertAktivitet($id, $medlem["aktiviteter"], $con);
 
-        mysqli_close($con);      //Lukker DB-connection
+        echo "<br>Bruker lagt til med id: " . $id;
+
+        mysqli_close($con);      //Lukker DB-connection'
+
+        
 
     
     }
@@ -242,10 +239,6 @@ if (isset($_POST['contact-send'])){
             <label for="postnummer">Postnummer</label>
             <input name="postnummer" type="number"    
                 value="<?php settVerdi("postnummer"); ?>">
-            
-            <label for="poststed">Poststed</label>
-            <input name="poststed" type="text"      
-                value="<?php settVerdi("poststed") ?>">
         
         <p>
             <label for="tlf">Telefonnummer</label>
