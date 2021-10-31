@@ -18,7 +18,7 @@ $sqlM = "SELECT
     FROM medlemmer
     INNER JOIN interesseregister on interesseregister.mid = medlemmer.id
     INNER JOIN interesser on interesseregister.iid = interesser.id
-    ORDER BY medlemmer.id";                                     //Definerer spørring
+    ORDER BY medlemmer.id";                                  //Definerer spørring
 
 
 $sqlI = "SELECT interesser.navn
@@ -27,13 +27,13 @@ $sqlI = "SELECT interesser.navn
 $db = dbConnect();
 
 $result = mysqli_query($db, $sqlM);                          //Henter med spørring
-$medlemmer = mysqli_fetch_all($result, MYSQLI_ASSOC);
-mysqli_free_result($result);  
+$medlemmer = mysqli_fetch_all($result, MYSQLI_ASSOC);        
+mysqli_free_result($result);                                 //frigir minne
 
 
 $result = mysqli_query($db, $sqlI); 
 $interesser = mysqli_fetch_all($result, MYSQLI_ASSOC);
-mysqli_free_result($result);                                //frigir minne
+mysqli_free_result($result);                                
 
 
 mysqli_close($db);                                          //Lukker DB-connection
@@ -51,7 +51,7 @@ mysqli_close($db);                                          //Lukker DB-connecti
             <?php foreach ($interesser as $interesse):?>
 
 
-                <?php echo "<br><h2>" . $interesse["navn"] . "<h2>"?>
+                <?php echo "<br><h2>" . $interesse["navn"] . "</h2>"?>
 
                 <table border=1>
 
@@ -61,7 +61,7 @@ mysqli_close($db);                                          //Lukker DB-connecti
 
                     <?php foreach($medlemmer as $medlem){
                         
-                        if ($medlem["navn"] == $interesse["navn"]){
+                        if ($medlem["navn"] == $interesse["navn"]){    //Skriver ut rad
                             echo "<tr><td>" . $medlem["id"]         . "</td>";   
                             echo "<td>"     . $medlem["fornavn"]    . "</td>";   
                             echo "<td>"     . $medlem["etternavn"]  . "</td>";      

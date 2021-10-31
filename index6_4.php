@@ -12,19 +12,17 @@ function dbConnect(){
     return $db;
 }
 
-$sql = "SELECT aktiviteter.id, aktiviteter.navn, 
+$sql = "SELECT aktiviteter.id, aktiviteter.navn,        
 aktiviteter.ansvarlig_id, aktiviteter.dato
 
-FROM aktiviteter";
+FROM aktiviteter";                                      //Spørring
 
                     
 $db = dbConnect();
 
-$result = mysqli_query($db, $sql);                          //Henter med spørring
+$result = mysqli_query($db, $sql);                     
 $aktiviteter = mysqli_fetch_all($result, MYSQLI_ASSOC);
-
 mysqli_free_result($result);  
-
 mysqli_close($db); 
 
 ?>
@@ -39,7 +37,7 @@ mysqli_close($db);
 
     <body>
         <table border=1>
-                <tr><td><b>Id    </b></td>
+                <tr><td><b>Id    </b></td>          <! --- Overskrift --->
                     <td><b>Navn   </b></td>
                     <td><b>Ansvarlig </b></td>
                     <td><b>Dato </b></td>
@@ -48,10 +46,10 @@ mysqli_close($db);
 
                     <?php                         
 
-                    $d1 = new datetime(date("Y-m-d"));
+                    $d1 = new datetime(date("Y-m-d"));      //Bruker sammenlignbare objekter
                     $d2 = new datetime($aktivitet["dato"]);
 
-                        if ($d1 < $d2){
+                        if ($d1 < $d2){     //Printer ut kommende hendelser
                             echo "<tr><td>" . $aktivitet["id"]              . "</td>";   
                             echo "<td>"     . $aktivitet["navn"]            . "</td>";          
                             echo "<td>"     . $aktivitet["ansvarlig_id"]    . "</td>";                     

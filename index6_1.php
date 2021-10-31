@@ -49,7 +49,7 @@ mysqli_close($db);                                          //Lukker DB-connecti
                             }
                         }
                         else{
-                            $val = $verdi;
+                            $val = $verdi;                 //Legger verdi i $val
                         }
                         
                         echo "<td>" . $val . "</td>";}      //Utskrift i rute

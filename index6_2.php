@@ -1,10 +1,10 @@
 <?php
 
-function settVerdi($i){
+function settVerdi($i){                             //skriver ut $_POST[]
     if (isset($_POST[$i])) {echo $_POST[$i];} 
 }
 
-function dbConnect(){
+function dbConnect(){                               //Kobler seg til DB
 
     $user = 'root';
     $password = '';
@@ -17,7 +17,7 @@ function dbConnect(){
     return $db;
 }
 
-function feilmeldinger($a){
+function feilmeldinger($a){                         //Returnerer feilmeldinger
         
     $messages = array();    //Lagrer feilmeldinger i array
 
@@ -65,43 +65,39 @@ function feilmeldinger($a){
         $messages[] = "Du må fylle inn kontigentstatus";    
     }
 
-    return $messages;
+    return $messages;                               //returnerer array
 }
 
-function insertMedlem($medlem, $con){
-    $medlem["postnummer"] = (int) $medlem["postnummer"];
+function insertMedlem($medlem, $con){               //Sender medlem til DB
 
-        $medlem["tlf"] = (int) $medlem["tlf"];
-        
-        
-        if ($medlem["kjonn"] == "Mann") {$medlem["kjonn"] = 1;}
-        else                            {$medlem["kjonn"] = 0; }
+    if ($medlem["kjonn"] == "Mann") {$medlem["kjonn"] = 1;}     //Setter som bolean
+    else                            {$medlem["kjonn"] = 0; }
 
-        if ($medlem["kontigentstatus"] == "Betalt") {$medlem["kontigentstatus"] = 1;}
-        else                                        {$medlem["kontigentstatus"] = 0;}
+    if ($medlem["kontigentstatus"] == "Betalt") {$medlem["kontigentstatus"] = 1;}
+    else                                        {$medlem["kontigentstatus"] = 0;}
         
 
-        $sqlInsertMedlem = $con->prepare
-            ('INSERT INTO medlemmer (fornavn, etternavn, adresse, postnummer, tlf, 
-            mail, fodselsdato, kjonn, medlemSidenDato, kontigentstatus)
+    $sqlInsertMedlem = $con->prepare
+        ('INSERT INTO medlemmer (fornavn, etternavn, adresse, postnummer, tlf, 
+        mail, fodselsdato, kjonn, medlemSidenDato, kontigentstatus)
 
-            VALUE (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);');
+        VALUE (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);');         //Bruker prepared statement
 
 
-        $sqlInsertMedlem->bind_param( "sssiissisi",
-            $medlem["fornavn"], $medlem["etternavn"], $medlem["adresse"], 
-            $medlem["postnummer"], $medlem["tlf"], $medlem["mail"], 
-            $medlem["fodselsdato"], $medlem["kjonn"], 
-            $medlem["dato"], $medlem["kontigentstatus"]
-        );
+    $sqlInsertMedlem->bind_param( "sssiissisi",
+        $medlem["fornavn"], $medlem["etternavn"], $medlem["adresse"], 
+        $medlem["postnummer"], $medlem["tlf"], $medlem["mail"], 
+        $medlem["fodselsdato"], $medlem["kjonn"], 
+        $medlem["dato"], $medlem["kontigentstatus"]     
+    );                                                   //Dynamisk spørring
 
-        $sqlInsertMedlem->execute();
-        $sqlInsertMedlem->close();
+    $sqlInsertMedlem->execute();
+    $sqlInsertMedlem->close();
 
 
 }
 
-function insertInteresse($id, $arr, $con){
+function insertInteresse($id, $arr, $con){          //Sender interesse til DB
 
     foreach ($arr as $a){
 
@@ -119,7 +115,7 @@ function insertInteresse($id, $arr, $con){
 
 }
 
-function insertRolle($id, $arr, $con){
+function insertRolle($id, $arr, $con){              //Sender rolle til DB
 
     foreach ($arr as $a){
 
@@ -172,23 +168,23 @@ if (isset($_POST['contact-send'])){
             unset($_POST[$k]);
         }
 
-        $con = dbConnect();
+        $con = dbConnect();                 //returnerer mysqli
 
         insertMedlem($medlem, $con);
 
         
-        $idQuery = "SELECT id FROM medlemmer WHERE 
+        $idQuery = "SELECT id FROM medlemmer WHERE     
             mail = '" . $medlem["mail"] . "' AND fornavn = '" . $medlem["fornavn"] . "';";
 
-        $result = mysqli_query($con, $idQuery);           
+        $result = mysqli_query($con, $idQuery);     //Henter id fra DB
         
         $r = mysqli_fetch_all($result, MYSQLI_ASSOC);
         
-        mysqli_free_result($result);   
+        mysqli_free_result($result);                //Frigir minne
 
-        $id = $r[0]["id"];
+        $id = $r[0]["id"];                          //Legger id i variabel
         
-        insertRolle(    $id, $medlem["roller"],      $con);
+        insertRolle(    $id, $medlem["roller"],      $con); //Funksjoner for insert
         insertInteresse($id, $medlem["interesser"],  $con);
         insertAktivitet($id, $medlem["aktiviteter"], $con);
 

@@ -1,1 +1,2 @@
-Oppgaven utføres på intervju
+Oppgaven utføres på intervju.
+Sikkerhetskopi er vedlagt i besvarelse
