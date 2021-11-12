@@ -1,24 +1,33 @@
 <?php
-$user = 'root';
-$password = '';
-$db = 'klubbdb';
+require 'index7_db.php';
 
-$db = new mysqli('localhost', $user, $password, $db) or die("Tilkobling misslykket");
+session_start();
 
-if ($db) {echo "Tilkoblet vellykket";}                      //Feedback
+if(!isset($_SESSION['bruker']['innlogget']) ||
+    $_SESSION['bruker']['innlogget'] !== true) {
+    header("Location: index7_login.php");
+    exit();
+}
+
+echo "Du er nå logget inn på en passordbeskyttet side<br>";
 
 $sql = "SELECT * from medlemmer";                           //Definerer spørring
 
-$result = mysqli_query($db, $sql);                          //Henter med spørring
+$con = dbConnect();
+
+$result = mysqli_query($con, $sql);                          //Henter med spørring
 
 $medlemmer = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
 mysqli_free_result($result);                                //frigir minne
 
-mysqli_close($db);                                          //Lukker DB-connection
+mysqli_close($con);                                          //Lukker DB-connection
 
-
+session_destroy();
 ?>
+
+
+
 <!doctype html>
 <html>
     <head>

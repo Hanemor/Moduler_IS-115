@@ -150,6 +150,7 @@ function insertAktivitet($id, $arr, $con){
     }
 }
 
+
 ////////////////////////////////////////////////////
 
 
@@ -204,6 +205,7 @@ if (isset($_POST['contact-send'])){
     }
     
 }
+
 
 ?>
 
