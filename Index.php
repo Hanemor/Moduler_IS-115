@@ -7,6 +7,18 @@
              
 
         <p>
+            <b>Modul 7</b> <br><br>
+
+            <a href = "index7_login.php">Login </a>                       <br>
+            
+
+        </p>
+    <br>
+        <h4> Gamle moduler <br>
+        (Hyperlenker til disse vil ikke fungere dersom filene ikke er vedlagt)  </h4>
+
+
+        <p>
             <b>Modul 6</b> <br><br>
 
             <a href = "index6_1.php">Oppgave 1</a>                            <br>
@@ -14,11 +26,6 @@
             <a href = "index6_3.php">Oppgave 3</a>                            <br>
             <a href = "index6_4.php">Oppgave 4</a>                            <br>
             <a href = "index6_5.php">Oppgave 5</a>                            <br>
-
-        </p>
-    <br>
-        <h4> Gamle moduler <br>
-        (Hyperlenker til disse vil ikke fungere dersom filene ikke er vedlagt)  </h4>
 
         <p><b>Modul 5</b> <br><br>
 

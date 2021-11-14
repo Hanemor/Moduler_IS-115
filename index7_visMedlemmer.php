@@ -1,6 +1,4 @@
 <?php
-require 'index7_db.php';
-
 session_start();
 
 if(!isset($_SESSION['bruker']['innlogget']) ||
@@ -9,7 +7,9 @@ if(!isset($_SESSION['bruker']['innlogget']) ||
     exit();
 }
 
-echo "Du er nå logget inn på en passordbeskyttet side<br>";
+require 'index7_db.php';
+
+echo "Du er nå logget inn på en passordbeskyttet side som brukeren <b>" . $_SESSION['bruker']['mail'] . "</b><br>";
 
 $sql = "SELECT * from medlemmer";                           //Definerer spørring
 

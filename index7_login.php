@@ -16,27 +16,27 @@ if(isset($_REQUEST['loggin'])){
 
     $result = mysqli_query($con, $query);    
     
-    if($result->num_rows === 0){
+    if($result->num_rows === 0){                        //Sjekker om tom
         $brukerFunnet = false;
     }
-    else{$brukerFunnet = true;}
+    else{$brukerFunnet = true;}                         //Setter funnet som verdi
 
     
 
     if ($brukerFunnet){
         
-        $r = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        $r = mysqli_fetch_all($result, MYSQLI_ASSOC);   //Henter passord om funnet
 
         if(password_verify($_REQUEST["passord"], $r[0]["passord"])){
 
             mysqli_close($con);
 
-            session_start();
+            session_start();                            //Oppretter session
 
-            $_SESSION['bruker']['innlogget'] = true;
+            $_SESSION['bruker']['innlogget'] = true;    //Gir array verdi
             $_SESSION['bruker']['mail'] = $r[0]["mail"];
 
-            header("Location: index7_visMedlemmer.php");
+            header("Location: index7_visMedlemmer.php");    //Sender til siden
             exit;
         }
         else{echo "Du har tastet inn feil brukernavn eller passord";}
