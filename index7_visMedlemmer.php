@@ -11,7 +11,7 @@ require 'index7_db.php';
 
 echo "Du er nå logget inn på en passordbeskyttet side som brukeren <b>" . $_SESSION['bruker']['mail'] . "</b><br>";
 
-$sql = "SELECT * from medlemmer";                           //Definerer spørring
+$sql = "SELECT * from medlemmer";                            //Definerer spørring
 
 $con = dbConnect();
 
@@ -19,7 +19,7 @@ $result = mysqli_query($con, $sql);                          //Henter med spørr
 
 $medlemmer = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-mysqli_free_result($result);                                //frigir minne
+mysqli_free_result($result);                                 //frigir minne
 
 mysqli_close($con);                                          //Lukker DB-connection
 
