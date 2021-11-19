@@ -9,7 +9,9 @@
         <p>
             <b>Modul 8</b> <br><br>
 
-            <a href = "index8_1.php">Oppgave 1 </a>                           <br>
+            <a href = "index8_1.php">Oppgave 1 </a><br>
+            <a href = "index8_2.php">Oppgave 2 </a><br>   
+            <a href = "index8_3.php">Oppgave 3 </a><br>                 <br>
             
 
         </p>

@@ -1,3 +1,3 @@
 <?php
-echo "dette er en php-fil";
+echo "Dette er en php-fil";
 ?>
