@@ -4,6 +4,7 @@ $mappe = "./index8_katalog/";     //Henviser til mappe
 
 $mappeRef = opendir($mappe);      //Mappe åpnes
 
+
 ?>
 
 <table border=1>

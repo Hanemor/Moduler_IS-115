@@ -1,6 +1,6 @@
 <?php
 
-require 'index7_db.php';
+require 'index_db.php';
 
 if(isset($_REQUEST['loggin'])){
 

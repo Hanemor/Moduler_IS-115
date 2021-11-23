@@ -7,7 +7,7 @@ if(!isset($_SESSION['bruker']['innlogget']) ||
     exit();
 }
 
-require 'index7_db.php';
+require 'index_db.php';
 
 echo "Du er nå logget inn på en passordbeskyttet side som brukeren <b>" . $_SESSION['bruker']['mail'] . "</b><br>";
 
