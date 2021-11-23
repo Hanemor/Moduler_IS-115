@@ -1,17 +1,13 @@
 <?php
-//Lag et script som laster opp et profilbilde av et medlem til en katalog du bestemmer selv. Filene må få 
-//navn {ID}.{filtype} der ID er PRIMARY_KEY for medlemmet. Opplastingen skal kun akseptere jpg- og png format og 
-//bildene kan ikke være større enn 2MB. Feilmeldinger må vises for brukeren. Bildet skal vises 
-//i medlemsprofilen til medlemmet
-
-
-
 //Dummy login som erstattes i medlemssystem-prosjektet
 //Bruker $_SESSION for å "late som" brukeren har logget inn
 session_start();                                        //Oppretter session
 $_SESSION['bruker']['innlogget']    = true;             //Gir array verdi    
 $_SESSION['bruker']['mail']         = "post@mail.com";
 $_SESSION['bruker']['id']           = 1;
+//////////////////////////////////////////////////////////////////////////
+//Funksjonaliteten under vil virke inn på hvilket bilde som vises på en profilside
+//  da dette bestemmes av navn og filplassering
 //////////////////////////////////////////////////////////////////////////
 
 
@@ -32,9 +28,9 @@ $fornavn = $n[0]['fornavn'];                    //Variabler til overskrift
 $etternavn = $n[0]['etternavn'];
 $id = $n[0]['id'];
 
-if (isset($_POST['contact-send'])){
-    $fil = $_FILES["profilbilde"];
+if (isset($_POST['contact-send'])){             //Bildet er sendt
 
+    //$fil = $_FILES["profilbilde"];
     $filNavn = $_FILES["profilbilde"]['name'];
     $filTmpNavn = $_FILES['profilbilde']['tmp_name'];
     $filType = $_FILES["profilbilde"]['type'];
@@ -42,15 +38,15 @@ if (isset($_POST['contact-send'])){
     $filFeil = $_FILES["profilbilde"]['error'];
 
     $fileExt = explode('.', $filNavn);
-    $fileActualExt = strtolower(end($fileExt));
+    $fileActualExt = strtolower(end($fileExt)); //jpg eller png
 
     $tillat = array('jpg', 'png');
 
     $riktigFormat = False;
 
-    if (in_array($fileActualExt, $tillat)){
-        if ($filFeil === 0){
-            if ($filStr < 2000000){
+    if (in_array($fileActualExt, $tillat)){  //Filtype
+        if ($filFeil === 0){                 //Evt andre feil
+            if ($filStr < 2000000){          //Filstr i bytes
                 $riktigFormat = True;
             }
             else {echo "Filen er for stor";}
@@ -69,7 +65,7 @@ if (isset($_POST['contact-send'])){
         $mappeRef = opendir('index8_katalog/');      //Mappe åpnes
         while($neste = readdir($mappeRef)){ //Sjekker filer i katalog
             
-            //Sletter gammelt bilde
+            //Fjerner gammelt bilde
             if (($id . ".jpg") == $neste)
             { unlink('index8_katalog/' . $neste);}
             if (($id . ".png") == $neste)
@@ -84,12 +80,8 @@ if (isset($_POST['contact-send'])){
 
 }
 
-
-$filNavn = (string) $n[0]["id"];
 session_destroy();
 ?>
-
-
 
 
 <html>

@@ -26,8 +26,9 @@ fwrite($loggfil, $antall);
 fclose($loggfil);
 
 
-
+// Åpner for å lese
 $loggfil = fopen("index8_katalog/log.txt", "r");
+
 echo "Antall brukere som har åpnet denne siden: ";
 
 $arr = array();
