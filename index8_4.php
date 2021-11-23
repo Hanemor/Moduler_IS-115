@@ -10,7 +10,7 @@ if(!empty($_GET['fil'])){
         //Definerer headere
         header('Cache-Conrol: public');
         header('Content-Descriprion: File Transfer');
-        header('Content-Disposition: attachment; filename=$filnavn');
+        header('Content-Disposition: attachment; filename=' . $filnavn);
         header('Content-Type: application/pdf');
         header('Content-Transfer-Encoding: binary');
 
