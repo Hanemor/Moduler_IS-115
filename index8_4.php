@@ -1,4 +1,6 @@
 <?php
+//Dette er en kommentar
+
 if(!empty($_GET['fil'])){   
     $filnavn = basename($_GET['fil']);      //Henter filnavn
     
